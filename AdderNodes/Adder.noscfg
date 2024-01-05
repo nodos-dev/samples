@@ -1,0 +1,32 @@
+{
+    "info": {
+        "id": {
+            "name": "sample.adder",
+            "version": "0.1.0"
+        },
+        "display_name": "Adder",
+        "description": "A plugin that contains a node for adding two integers.",
+        "dependencies": [
+            {
+                "name": "sample.sys.adder",
+                "version": "0.1.0"
+            }
+        ]
+    },
+    "node_definitions": [
+        "Config/Adder.nosdef"
+    ],
+    "binary_path": "Binaries/AdderNodes",
+    "associated_nodes": [
+        {
+            "category": "Sample",
+            "class_name": "AddInteger",
+            "display_name": "Add Integer"
+        },
+        {
+            "category": "Sample",
+            "class_name": "AddFloat",
+            "display_name": "Add Float"
+        }
+    ]
+}

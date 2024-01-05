@@ -1,0 +1,11 @@
+{
+    "info": {
+        "id": {
+            "name": "sample.sys.adder",
+            "version": "0.1.0"
+        },
+        "display_name": "Adder Subsystem",
+        "description": "Subsystem for adding two numbers."
+    },
+    "binary_path": "Binaries/AdderSubsystem"
+}
