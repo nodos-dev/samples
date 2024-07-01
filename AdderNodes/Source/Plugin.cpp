@@ -33,17 +33,17 @@ NOSAPI_ATTR nosResult NOSAPI_CALL nosExportNodeFunctions(size_t* outCount, nosNo
 	};
 	outFunctions[1]->ClassName = NOS_NAME_STATIC("sample.adder.AddFloat");
 	outFunctions[1]->ExecuteNode = [](void* ctx, const nosNodeExecuteArgs* args)
-		{
-			nos::NodeExecuteArgs helper(args);
-			auto inputX = static_cast<float*>(helper[NOS_NAME_STATIC("X")].Data->Data);
-			auto inputY = static_cast<float*>(helper[NOS_NAME_STATIC("Y")].Data->Data);
-			auto outputId = helper[NOS_NAME_STATIC("Z")].Id;
-			float result = adder->AddFloat(*inputX, *inputY);
-			// You can also use nosEngine.SetPinValue, which will call your type's copy functions (if applicable),
-			// and enqueues the update if you are not on Nodos Scheduler thread.
-			nosEngine.SetPinValue(outputId, nos::Buffer::From(result));
-			return NOS_RESULT_SUCCESS;
-		};
+	{
+		nos::NodeExecuteArgs helper(args);
+		auto inputX = static_cast<float*>(helper[NOS_NAME_STATIC("X")].Data->Data);
+		auto inputY = static_cast<float*>(helper[NOS_NAME_STATIC("Y")].Data->Data);
+		auto outputId = helper[NOS_NAME_STATIC("Z")].Id;
+		float result = adder->AddFloat(*inputX, *inputY);
+		// You can also use nosEngine.SetPinValue, which will call your type's copy functions (if applicable),
+		// and enqueues the update if you are not on Nodos Scheduler thread.
+		nosEngine.SetPinValue(outputId, nos::Buffer::From(result));
+		return NOS_RESULT_SUCCESS;
+	};
     return NOS_RESULT_SUCCESS;
 }
 
