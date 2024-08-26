@@ -2,7 +2,9 @@
 #include <Adder.h>
 #include <Nodos/SubsystemAPI.h>
 
-NOS_INIT();
+NOS_INIT()
+NOS_BEGIN_IMPORT_DEPS()
+NOS_END_IMPORT_DEPS()
 
 namespace sample
 {
@@ -13,20 +15,24 @@ T __stdcall Add(T a, T b)
 }
 }
 
-extern "C"
+std::unique_ptr<Adder> GAdderCtx;
+
+nosResult NOSAPI_CALL OnRequest(uint32_t minorVersion, void** outSubsystemContext)
 {
-NOSAPI_ATTR nosResult NOSAPI_CALL nosExportSubsystem(nosSubsystemFunctions* subsystemFunctions, void** exported)
-{
-    auto adderCtx = new Adder;
-    adderCtx->AddInteger = sample::Add<int>;
-    adderCtx->AddFloat = sample::Add<float>;
-    *exported = adderCtx;
-    return NOS_RESULT_SUCCESS;
+	if (!GAdderCtx)
+		{
+		GAdderCtx = std::make_unique<Adder>();
+		GAdderCtx->AddInteger = sample::Add<int>;
+		GAdderCtx->AddFloat = sample::Add<float>;
+	}
+	*outSubsystemContext = GAdderCtx.get();
+	return NOS_RESULT_SUCCESS;
 }
 
-NOSAPI_ATTR nosResult NOSAPI_CALL nosUnloadSubsystem(void* subsystemContext)
+
+extern "C"
+NOSAPI_ATTR nosResult NOSAPI_CALL nosExportSubsystem(nosSubsystemFunctions* subsystemFunctions)
 {
-    delete static_cast<Adder*>(subsystemContext);
-    return NOS_RESULT_SUCCESS;
-}
+	subsystemFunctions->OnRequest = OnRequest;
+	return NOS_RESULT_SUCCESS;
 }

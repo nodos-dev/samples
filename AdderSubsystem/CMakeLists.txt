@@ -1,1 +1,7 @@
-add_folder_as_subsystem_project("AdderSubsystem" "" "${CMAKE_CURRENT_SOURCE_DIR}/Include")
+list(APPEND DEPENDENCIES ${NOS_SUBSYSTEM_SDK_TARGET})
+set(INCLUDE_FOLDERS "")
+
+nos_add_subsystem("AdderSubsystem" "${DEPENDENCIES}" "${INCLUDE_FOLDERS}")
+
+# Project generation
+nos_group_targets("AdderSubsystem" "Subsystems")
