@@ -17,6 +17,44 @@
                 { "name": "Y", "type_name": "float", "show_as": "INPUT_PIN", "can_show_as": "INPUT_PIN_OR_PROPERTY"  },
                 { "name": "Z", "type_name": "float", "show_as": "OUTPUT_PIN", "can_show_as": "OUTPUT_PIN_OR_PROPERTY" }
             ]
-        }
+        },
+		{
+			"class_name": "AddArrayInShader",
+            "display_name": "Add Arrays to Texture in Shader",
+			"contents_type": "Job",
+			"contents": {
+				"type": "nos.sys.vulkan.GPUNode",
+				"options": {
+					"shader": "./Shaders/AddVLA.comp",
+					"stage": "COMPUTE"
+				}
+			},
+			"pins": [
+				{
+					"name": "Input",
+					"type_name": "nos.sys.vulkan.Texture",
+					"show_as": "INPUT_PIN",
+					"can_show_as": "INPUT_PIN_ONLY"
+				},
+				{
+					"name": "Output",
+					"type_name": "nos.sys.vulkan.Texture",
+					"show_as": "OUTPUT_PIN",
+					"can_show_as": "OUTPUT_PIN_ONLY"
+				},
+				{
+					"name": "UShortArray",
+					"type_name": "[ushort]",
+					"show_as": "INPUT_PIN",
+					"can_show_as": "INPUT_PIN_ONLY"
+				},
+				{
+					"name": "FloatArray",
+					"type_name": "[float]",
+					"show_as": "INPUT_PIN",
+					"can_show_as": "INPUT_PIN_ONLY"
+				}
+			]
+		}
     ]
 }

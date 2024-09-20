@@ -1,0 +1,50 @@
+#version 450
+
+#extension GL_EXT_shader_16bit_storage : enable
+
+// Binding for the input texture (read-only)
+layout(binding = 0, rgba8) readonly uniform image2D Input;
+
+// Binding for the output texture (write-only)
+layout(binding = 1, rgba8) writeonly uniform image2D Output;
+
+layout(binding = 2, std430) readonly buffer U16ARRAY{
+    uint UShortArray_size;
+    uint16_t UShortArray[];
+} u16Array;
+
+layout(binding = 3, std430) readonly buffer FLTARRAY{
+    vec4 unimportant_data;
+    uint FloatArray_size;
+    float FloatArray[];
+} fArray;
+
+// The compute shader's global invocation ID provides the current thread's x, y, and z indices
+layout (local_size_x = 16, local_size_y = 16) in;
+
+void main() {
+    // Calculate the current pixel coordinate
+    const ivec2 D = ivec2(gl_NumWorkGroups * gl_WorkGroupSize).xy;
+    const ivec2 Q = imageSize(Output);
+    const ivec2 N = Q / D;
+    const ivec2 Coord = ivec2(gl_GlobalInvocationID.xy) * N;
+    
+    float multiplier = 0.0;
+    for(uint i = 0; i < fArray.FloatArray_size; ++i)
+    {
+        multiplier += fArray.FloatArray[i];
+    }
+    for(uint i = 0; i < u16Array.UShortArray_size; ++i)
+    {
+        multiplier += uint(u16Array.UShortArray[i]);
+    }
+    for(int i = 0; i < N.x; ++i)
+    {
+        for(int j = 0; j < N.y; j++)
+        {
+            const ivec2 ij = Coord + ivec2(i, j);
+            vec4 pixel = imageLoad(Input, ij);
+            imageStore(Output, ij, pixel * multiplier);
+        }
+    }
+}

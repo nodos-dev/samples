@@ -10,6 +10,10 @@
             {
                 "name": "sample.sys.adder",
                 "version": "0.1.0"
+            },
+            {
+                "name": "nos.sys.vulkan",
+                "version": "5.8.0"
             }
         ]
     },
@@ -27,6 +31,11 @@
             "category": "Sample",
             "class_name": "AddFloat",
             "display_name": "Add Float"
+        },
+		{
+            "category": "Sample",
+			"class_name": "AddArrayInShader",
+            "display_name": "Add Arrays to Texture in Shader"
         }
     ]
 }
