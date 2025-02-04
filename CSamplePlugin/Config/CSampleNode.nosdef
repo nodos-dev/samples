@@ -1,0 +1,28 @@
+{
+  "nodes": [
+    {
+      "class_name": "CSample",
+      "contents_type": "Job",
+      "pins": [
+        {
+          "name": "X",
+          "type_name": "int",
+          "show_as": "INPUT_PIN",
+          "can_show_as": "INPUT_PIN_OR_PROPERTY"
+        },
+        {
+          "name": "Y",
+          "type_name": "int",
+          "show_as": "INPUT_PIN",
+          "can_show_as": "INPUT_PIN_OR_PROPERTY"
+        },
+        {
+          "name": "Z",
+          "type_name": "int",
+          "show_as": "OUTPUT_PIN",
+          "can_show_as": "OUTPUT_PIN_OR_PROPERTY"
+        }
+      ]
+    }
+  ]
+}

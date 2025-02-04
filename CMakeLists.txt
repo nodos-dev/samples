@@ -13,3 +13,4 @@ nos_find_sdk("1.2.0" NOS_PLUGIN_SDK_TARGET NOS_SUBSYSTEM_SDK_TARGET NOS_SDK_DIR)
 
 add_subdirectory(AdderSubsystem)
 add_subdirectory(AdderNodes)
+add_subdirectory(CSamplePlugin)

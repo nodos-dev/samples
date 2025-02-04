@@ -1,0 +1,21 @@
+{
+    "info": {
+        "id": {
+            "name": "sample.csample",
+            "version": "0.1.0"
+        },
+        "display_name": "CSample",
+        "description": "A plugin written in C."
+    },
+    "node_definitions": [
+        "Config/CSampleNode.nosdef"
+    ],
+    "binary_path": "Binaries/CSamplePlugin",
+    "associated_nodes": [
+        {
+            "category": "Sample",
+            "class_name": "CSample",
+            "display_name": "C Sample"
+        }
+    ]
+}
