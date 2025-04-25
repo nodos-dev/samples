@@ -1,6 +1,6 @@
 // Copyright MediaZ Teknoloji A.S. All Rights Reserved.
 #include <Adder.h>
-#include <Nodos/SubsystemAPI.h>
+#include <Nodos/PluginAPI.h>
 
 NOS_INIT()
 NOS_BEGIN_IMPORT_DEPS()
@@ -15,24 +15,24 @@ T __stdcall Add(T a, T b)
 }
 }
 
-std::unique_ptr<Adder> GAdderCtx;
+std::unique_ptr<Adder> GAdderAPI;
 
-nosResult NOSAPI_CALL OnRequest(uint32_t minorVersion, void** outSubsystemContext)
+nosResult NOSAPI_CALL OnRequestAPI(uint32_t minorVersion, void** outSubsystemContext)
 {
-	if (!GAdderCtx)
+	if (!GAdderAPI)
 		{
-		GAdderCtx = std::make_unique<Adder>();
-		GAdderCtx->AddInteger = sample::Add<int>;
-		GAdderCtx->AddFloat = sample::Add<float>;
+		GAdderAPI = std::make_unique<Adder>();
+		GAdderAPI->AddInteger = sample::Add<int>;
+		GAdderAPI->AddFloat = sample::Add<float>;
 	}
-	*outSubsystemContext = GAdderCtx.get();
+	*outSubsystemContext = GAdderAPI.get();
 	return NOS_RESULT_SUCCESS;
 }
 
 
 extern "C"
-NOSAPI_ATTR nosResult NOSAPI_CALL nosExportSubsystem(nosSubsystemFunctions* subsystemFunctions)
+NOSAPI_ATTR nosResult NOSAPI_CALL nosExportPlugin(nosPluginFunctions* outFunctions)
 {
-	subsystemFunctions->OnRequest = OnRequest;
+	outFunctions->OnRequestAPI = OnRequestAPI;
 	return NOS_RESULT_SUCCESS;
 }

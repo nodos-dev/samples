@@ -1,60 +1,111 @@
 {
-    "nodes": [
-        {
-            "class_name": "AddInteger",
-            "contents_type": "Job",
-            "pins": [ 
-                { "name": "X", "type_name": "int", "show_as": "INPUT_PIN", "can_show_as": "INPUT_PIN_OR_PROPERTY"  },
-                { "name": "Y", "type_name": "int", "show_as": "INPUT_PIN", "can_show_as": "INPUT_PIN_OR_PROPERTY"  },
-                { "name": "Z", "type_name": "int", "show_as": "OUTPUT_PIN", "can_show_as": "OUTPUT_PIN_OR_PROPERTY" }
-            ]
-        },
-        {
-            "class_name": "AddFloat",
-            "contents_type": "Job",
-            "pins": [ 
-                { "name": "X", "type_name": "float", "show_as": "INPUT_PIN", "can_show_as": "INPUT_PIN_OR_PROPERTY"  },
-                { "name": "Y", "type_name": "float", "show_as": "INPUT_PIN", "can_show_as": "INPUT_PIN_OR_PROPERTY"  },
-                { "name": "Z", "type_name": "float", "show_as": "OUTPUT_PIN", "can_show_as": "OUTPUT_PIN_OR_PROPERTY" }
-            ]
-        },
+	"nodes": [
 		{
-			"class_name": "AddArrayInShader",
-            "display_name": "Add Arrays to Texture in Shader",
-			"contents_type": "Job",
-			"contents": {
-				"type": "nos.sys.vulkan.GPUNode",
-				"options": {
-					"shader": "./Shaders/AddVLA.comp",
-					"stage": "COMPUTE"
-				}
+			"class_name": "AddInteger",
+			"menu_info": {
+				"category": "Sample",
+				"display_name": "Add Integer"
 			},
-			"pins": [
-				{
-					"name": "Input",
-					"type_name": "nos.sys.vulkan.Texture",
-					"show_as": "INPUT_PIN",
-					"can_show_as": "INPUT_PIN_ONLY"
+			"node": {
+				"class_name": "AddInteger",
+				"contents_type": "Job",
+				"pins": [
+					{
+						"name": "X",
+						"type_name": "int",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_OR_PROPERTY"
+					},
+					{
+						"name": "Y",
+						"type_name": "int",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_OR_PROPERTY"
+					},
+					{
+						"name": "Z",
+						"type_name": "int",
+						"show_as": "OUTPUT_PIN",
+						"can_show_as": "OUTPUT_PIN_OR_PROPERTY"
+					}
+				]
+			}
+		},
+		{
+			"class_name": "AddFloat",
+			"menu_info": {
+				"category": "Sample",
+				"display_name": "Add Float"
+			},
+			"node": {
+				"class_name": "AddFloat",
+				"contents_type": "Job",
+				"pins": [
+					{
+						"name": "X",
+						"type_name": "float",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_OR_PROPERTY"
+					},
+					{
+						"name": "Y",
+						"type_name": "float",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_OR_PROPERTY"
+					},
+					{
+						"name": "Z",
+						"type_name": "float",
+						"show_as": "OUTPUT_PIN",
+						"can_show_as": "OUTPUT_PIN_OR_PROPERTY"
+					}
+				]
+			}
+		},
+		{
+			"class_name": "UseArraysInShader",
+			"menu_info": {
+				"category": "Sample",
+				"display_name": "Use Arrays In Shader"
+			},
+			"node": {
+				"class_name": "UseArraysInShader",
+				"display_name": "Use Arrays In Shader",
+				"contents_type": "Job",
+				"contents": {
+					"type": "nos.sys.vulkan.GPUNode",
+					"options": {
+						"shader": "Shaders/AddVLA.comp",
+						"stage": "COMPUTE"
+					}
 				},
-				{
-					"name": "Output",
-					"type_name": "nos.sys.vulkan.Texture",
-					"show_as": "OUTPUT_PIN",
-					"can_show_as": "OUTPUT_PIN_ONLY"
-				},
-				{
-					"name": "UShortArray",
-					"type_name": "[ushort]",
-					"show_as": "INPUT_PIN",
-					"can_show_as": "INPUT_PIN_ONLY"
-				},
-				{
-					"name": "FloatArray",
-					"type_name": "[float]",
-					"show_as": "INPUT_PIN",
-					"can_show_as": "INPUT_PIN_ONLY"
-				}
-			]
+				"pins": [
+					{
+						"name": "Input",
+						"type_name": "nos.sys.vulkan.Texture",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_ONLY"
+					},
+					{
+						"name": "Output",
+						"type_name": "nos.sys.vulkan.Texture",
+						"show_as": "OUTPUT_PIN",
+						"can_show_as": "OUTPUT_PIN_ONLY"
+					},
+					{
+						"name": "UShortArray",
+						"type_name": "[ushort]",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_ONLY"
+					},
+					{
+						"name": "FloatArray",
+						"type_name": "[float]",
+						"show_as": "INPUT_PIN",
+						"can_show_as": "INPUT_PIN_ONLY"
+					}
+				]
+			}
 		}
-    ]
+	]
 }
