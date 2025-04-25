@@ -1,6 +1,5 @@
 #include <Nodos/PluginAPI.h>
 
-
 nosName GetNameHelper(const char* name) 
 {
 	return nosEngine.GetName(name, strlen(name)); 
