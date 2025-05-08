@@ -9,7 +9,7 @@ if (NOT WITH_NODOS_WORKSPACE)
     "Place this repo under nodos-workspace/Module folder and run cmake -S ./Toolchain/CMake -B Build from workspace root.")
 endif()
 
-nos_find_plugin_sdk("38.1.0" NOS_PLUGIN_SDK_TARGET NOS_SDK_DIR)
+nos_find_plugin_sdk("39.0.0" NOS_PLUGIN_SDK_TARGET NOS_SDK_DIR)
 
 add_subdirectory(AdderSubsystem)
 add_subdirectory(AdderNodes)

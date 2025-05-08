@@ -16,12 +16,12 @@ nosResult NOSAPI_CALL ExecuteTestNode(void* ctx, nosNodeExecuteParams* params)
 	nosUUID outputId = {0};
 	for (size_t i = 0; i < params->PinCount; i++)
 	{
-		if (params->Pins[i].Name.ID == GetNameHelper("X").ID)
-			x = *(int*)params->Pins[i].Data->Data;
-		else if (params->Pins[i].Name.ID == GetNameHelper("Y").ID)
-			y = *(int*)params->Pins[i].Data->Data;
-		else if (params->Pins[i].Name.ID == GetNameHelper("Z").ID)
-			outputId = params->Pins[i].Id;
+		if (params->Pins[i]->Name.ID == GetNameHelper("X").ID)
+			x = *(int*)params->Pins[i]->Data->Data;
+		else if (params->Pins[i]->Name.ID == GetNameHelper("Y").ID)
+			y = *(int*)params->Pins[i]->Data->Data;
+		else if (params->Pins[i]->Name.ID == GetNameHelper("Z").ID)
+			outputId = params->Pins[i]->Id;
 	}
 	int result = x + y;
 	// Use this direct buffer copy approach only if your type does not need custom handling (just a simple buffer), and
